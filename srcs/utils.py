@@ -1,7 +1,7 @@
 from sklearn.datasets import fetch_openml
 import pandas as pd
 import numpy as np
-from sklearn.metrics import mean_squared_error, explained_variance_score
+from sklearn.metrics import mean_squared_error, explained_variance_score, mean_poisson_deviance, max_error
 
 
 def load_mtpl2(n_samples=None):
@@ -45,15 +45,11 @@ def load_data(n_samples=None):
 
 
 def print_scores(scores):
-    print("Model:", scores["model"])
-    print("Train MAE:{:.4f},std:{:.4f}".format(np.mean(scores["train_MAE"]), np.std(scores["train_MAE"])))
-    print("Test  MAE:{:.4f},std:{:.4f}".format(np.mean(scores["test_MAE"]), np.std(scores["test_MAE"])))
-    print("Train Explained Variance:{:.4f},std:{:.4f}".format(np.mean(scores["train_explained_variance"]),
-                                                              np.std(scores["train_explained_variance"])))
-    print("Test  Explained Variance:{:.4f},std:{:.4f}".format(np.mean(scores["test_explained_variance"]),
-                                                              np.std(scores["test_explained_variance"])))
-    print("Train Time:{:.2f},std:{:.2f}".format(np.mean(scores["train_time"]), np.std(scores["train_time"])))
-    print("Test  Time:{:.2f},std:{:.2f}".format(np.mean(scores["test_time"]), np.std(scores["test_time"])))
+    for key, value in scores.items():
+        if key in ["model"]:
+            print(f"{key}: {value}")
+        else:
+            print("{s}:{v:.4f};(std:{t:.4f})".format(s=key, v=np.mean(value), t=np.std(value)))
 
 
 def get_scores(model_name):
@@ -64,6 +60,14 @@ def get_scores(model_name):
         # Mean Absolute Error for training set and testing set
         "train_MAE": [],
         "test_MAE": [],
+
+        # Max Error for training set and testing set
+        "train_Max_Error": [],
+        "test_Max_Error": [],
+
+        # Mean Poisson Deviance for training set and testing set
+        "train_Mean_Poisson_Deviance": [],
+        "test_Mean_Poisson_Deviance": [],
 
         # Explained Variance Score for training set and testing set
         "train_explained_variance": [],
@@ -80,8 +84,19 @@ def get_scores(model_name):
 
 
 def calculate_metrics(scores, y_train, y_pred_train, y_test, y_pred_test):
+    # Mean Absolute Error for training set and testing set
     scores["train_MAE"].append(mean_squared_error(y_train, y_pred_train))
     scores["test_MAE"].append(mean_squared_error(y_test, y_pred_test))
+
+    # Max Error for training set and testing set
+    scores["train_Max_Error"].append(max_error(y_train, y_pred_train))
+    scores["test_Max_Error"].append(max_error(y_test, y_pred_test))
+
+    # Mean Poisson Deviance for training set and testing set
+    scores["train_Mean_Poisson_Deviance"].append(mean_poisson_deviance(y_train, y_pred_train))
+    scores["test_Mean_Poisson_Deviance"].append(mean_poisson_deviance(y_test, y_pred_test))
+
+    # Explained Variance Score for training set and testing set
     scores["train_explained_variance"].append(explained_variance_score(y_train, y_pred_train))
     scores["test_explained_variance"].append(explained_variance_score(y_test, y_pred_test))
     return scores
