@@ -27,6 +27,10 @@ def load_mtpl2(n_samples=None):
     df = df_freq.join(df_sev, how="left")
     df["ClaimAmount"].fillna(0, inplace=True)
 
+    # set datatype
+    df["VehAge"] = df["VehAge"].astype("Int64")
+    df["DrivAge"] = df["DrivAge"].astype("Int64")
+
     # unquote string fields
     for column_name in df.columns[df.dtypes.values == object]:
         df[column_name] = df[column_name].str.strip("'")
@@ -45,11 +49,21 @@ def load_data(n_samples=None):
 
 
 def print_scores(scores):
+    tmp = []
+    model_name = scores["model"]
     for key, value in scores.items():
         if key in ["model"]:
-            print(f"{key}: {value}")
+            continue
         else:
-            print("{s}:{v:.4f};(std:{t:.4f})".format(s=key, v=np.mean(value), t=np.std(value)))
+            tmp.append({
+                "Model": model_name,
+                "Type": key.split("_")[0],
+                "Metric": key.split("_")[1],
+                "Mean": np.mean(value),
+                "Std": np.std(value)
+            })
+
+    return pd.DataFrame(tmp).sort_values(by=["Type", "Metric"])
 
 
 def get_scores(model_name):
@@ -62,16 +76,16 @@ def get_scores(model_name):
         "test_MAE": [],
 
         # Max Error for training set and testing set
-        "train_Max_Error": [],
-        "test_Max_Error": [],
+        "train_MaxError": [],
+        "test_MaxError": [],
 
         # Mean Poisson Deviance for training set and testing set
-        "train_Mean_Poisson_Deviance": [],
-        "test_Mean_Poisson_Deviance": [],
+        "train_MeanPoissonDeviance": [],
+        "test_MeanPoissonDeviance": [],
 
-        # Explained Variance Score for training set and testing set
-        "train_explained_variance": [],
-        "test_explained_variance": [],
+        # Proportion of Deviance Explained (PDE) for training set and testing set
+        "train_PDE": [],
+        "test_PDE": [],
 
         # Time complexity for training set and testing set
         "train_time": [],
@@ -89,14 +103,26 @@ def calculate_metrics(scores, y_train, y_pred_train, y_test, y_pred_test):
     scores["test_MAE"].append(mean_squared_error(y_test, y_pred_test))
 
     # Max Error for training set and testing set
-    scores["train_Max_Error"].append(max_error(y_train, y_pred_train))
-    scores["test_Max_Error"].append(max_error(y_test, y_pred_test))
+    scores["train_MaxError"].append(max_error(y_train, y_pred_train))
+    scores["test_MaxError"].append(max_error(y_test, y_pred_test))
 
     # Mean Poisson Deviance for training set and testing set
-    scores["train_Mean_Poisson_Deviance"].append(mean_poisson_deviance(y_train, y_pred_train))
-    scores["test_Mean_Poisson_Deviance"].append(mean_poisson_deviance(y_test, y_pred_test))
+    scores["train_MeanPoissonDeviance"].append(mean_poisson_deviance(y_train, y_pred_train))
+    scores["test_MeanPoissonDeviance"].append(mean_poisson_deviance(y_test, y_pred_test))
 
     # Explained Variance Score for training set and testing set
-    scores["train_explained_variance"].append(explained_variance_score(y_train, y_pred_train))
-    scores["test_explained_variance"].append(explained_variance_score(y_test, y_pred_test))
+    scores["train_PDE"].append(explained_variance_score(y_train, y_pred_train))
+    scores["test_PDE"].append(explained_variance_score(y_test, y_pred_test))
     return scores
+
+
+if __name__ == "__main__":
+    scores = get_scores("model_name")
+    scores = calculate_metrics(scores, np.array([1, 2, 3]), np.array([1, 2, 3]), np.array([1, 2, 3]),
+                               np.array([1, 2, 3]))
+    scores["test_time"] = [1, 2, 3]
+    scores["train_time"] = [1, 2, 3]
+    scores["test_memory"] = [1, 2, 3]
+    scores["train_memory"] = [1, 2, 3]
+
+    print(print_scores(scores))
