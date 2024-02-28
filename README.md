@@ -1,5 +1,6 @@
 # 2024 Allianz Practitioner’s Challenge Technical: Group 3
 # Prediction Models for Highly Zero-Inflated Claims Count​ 
+[Group3 (2).pdf](https://github.com/yueht23/PGPC2024/files/14431583/Group3.2.pdf)
 
 Introduction 
 
