@@ -1,6 +1,5 @@
-# 2024 Allianz Practitioner’s Challenge Technical
-## Prediction Models for Highly Zero-Inflated Claims Count​ 
-### Group 3
+# 2024 Allianz Practitioner’s Challenge Technical: Group 3
+# Prediction Models for Highly Zero-Inflated Claims Count​ 
 
 Introduction 
 
@@ -32,12 +31,3 @@ Our findings were gauged on accuracy, efficiency, and metrics like MAE (Mean Abs
 Conclusion 
 
 Our investigation underscored the feasibility of applying a variety of models to tackle the zero-inflated claims data issue. Despite constraints regarding external data, computational resources, and timeline, we've established groundwork for future research, recommending the exploration of AI-driven vehicles' effects on insurance as a subsequent step. 
-
- 
-
- 
-
-Github Repo. 
-
-https://github.com/yueht23/PGPC2024 
-
