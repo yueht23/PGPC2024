@@ -2,7 +2,7 @@
 # Prediction Models for Highly Zero-Inflated Claims Count​ 
 [Group3 (2).pdf](https://github.com/yueht23/PGPC2024/files/14431583/Group3.2.pdf)
 
-Introduction 
+'''Introduction'''
 
 The 2024 Allianz Practitioner’s Challenge centered on predicting insurance claims data with a high frequency of zero claims. Our team tackled this by evaluating various statistical and machine learning models tailored for zero-inflated data. 
 
