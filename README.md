@@ -19,8 +19,8 @@ Additionally, we utilized external data sources like traffic cases in each regio
 
 ### Methodologies
 1. Statistical Models:
-Zero-Inflated Poisson Model: Combines Poisson and binomial distributions to model excess zero counts separately.
-Hurdle Poisson Model: Two-stage model using binary classification for zero counts, then zero-truncated Poisson for positive counts.
+- Zero-Inflated Poisson Model: Combines Poisson and binomial distributions to model excess zero counts separately.
+- Hurdle Poisson Model: Two-stage model using binary classification for zero counts, then zero-truncated Poisson for positive counts.
 2. Machine Learning Models:
 - CANN (Combined Actuarial Neural Network): Integrates a GLM with a neural network to capture non-linear relationships.
 - Boosting Models:
