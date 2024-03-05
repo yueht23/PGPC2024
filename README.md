@@ -32,8 +32,8 @@ Hurdle Poisson Model: Two-stage model using binary classification for zero count
 3. Imbalanced Data Techniques
 - REBAGG: Resampled bagging technique for imbalanced regression tasks.
 - Deep Imbalanced Regression:
-- Label Distribution Smoothing (LDS): Smooths label density with kernel density estimation.
-- Feature Distribution Smoothing (FDS): Transfers feature statistics between target bins.
+  - Label Distribution Smoothing (LDS): Smooths label density with kernel density estimation.
+  - Feature Distribution Smoothing (FDS): Transfers feature statistics between target bins.
 
 ### Ensemble Modeling
 A stacking ensemble model was created by combining predictions from multiple base models like XGBoost, LightGBM and their variants using a meta-learner like XGBoost or LightGBM.
