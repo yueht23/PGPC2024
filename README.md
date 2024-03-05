@@ -1,5 +1,5 @@
 # 2024 Allianz Practitioner's Challenge - Group 3
-## Prediction Models for Highly Zero-Inflated Claims Count
+# Prediction Models for Highly Zero-Inflated Claims Count
 
 This GitHub repository contains all the Jupyter notebooks created for processing the dataset and implementing various methods for making predictions on highly zero-inflated insurance claims data. The repository features a total of six branches, including the main branch and five additional branches, each created by individual members for uploading their respective parts of the Jupyter notebook. The main branch serves as the central repository for all crucial final notebooks and the test environment.
 
