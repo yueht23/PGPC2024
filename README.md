@@ -39,7 +39,7 @@ Additionally, we utilized external data sources like traffic cases in each regio
 A stacking ensemble model was created by combining predictions from multiple base models like XGBoost, LightGBM and their variants using a meta-learner like XGBoost or LightGBM.
 
 ### Evaluation Metrics
-The `utils` notebook, located in the `srcs` folder, computes metrics like Mean Absolute Error (MAE), Mean Poisson Deviance, Poisson Deviance Error (PDE) - the winning criteria, training time and memory usage.
+The `utils` notebook, located in the `srcs` folder, computes metrics like Mean Absolute Error (MAE), Mean Poisson Deviance, Proportion Deviance Explained (PDE) - the winning criteria, training time and memory usage.
 
 ### Results
 The stacking ensemble model achieved the best trade-off between accuracy (low MAE) and explainability (low PDE) by leveraging various techniques to handle the highly imbalanced claims data effectively.
