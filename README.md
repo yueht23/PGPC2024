@@ -42,7 +42,7 @@ A stacking ensemble model was created by combining predictions from multiple bas
 The `utils` notebook, located in the `srcs` folder, computes metrics like Mean Absolute Error (MAE), Mean Poisson Deviance, Proportion Deviance Explained (PDE) - the winning criteria, training time and memory usage.
 
 ### Results
-The stacking ensemble model achieved the best trade-off between accuracy (low MAE) and explainability (low PDE) by leveraging various techniques to handle the highly imbalanced claims data effectively.
+The stacking ensemble model achieved the best trade-off between accuracy (low MAE) and explainability (high PDE) by leveraging various techniques to handle the highly imbalanced claims data effectively.
 
 ### Winning Approach
 Our winning approach involved a stacked ensemble model that combined the strengths of multiple base models, including XGBoost, LightGBM, and their variants with REBAGG and hyperparameter tuning. This ensemble model achieved the best trade-off between accuracy (low MAE) and explainability (high PDE), leveraging the power of various techniques to effectively handle the highly imbalanced claims data.
