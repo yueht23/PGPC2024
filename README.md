@@ -59,10 +59,10 @@ To get started with this project, follow these steps:
 
 ### Contributors
 - [Contributor 1]
-- [Contributor 2]
-- [Contributor 3]
-- [Contributor 4]
-- [Contributor 5]
+- [[Contributor 2]](https://github.com/yueht23)
+- [[Contributor 3]](https://github.com/Wooddweller)
+- [[Contributor 4]](https://github.com/DoobieJella)
+- [[Contributor 5]](https://github.com/RicardoYSu)
 
 ### Acknowledgments
 We would like to express our gratitude to Allianz and the organizers of the 2024 Practitioner's Challenge for providing us with this exciting opportunity to work on a real-world problem and push the boundaries of our knowledge.
