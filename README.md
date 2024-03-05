@@ -58,7 +58,7 @@ To get started with this project, follow these steps:
 3. Navigate to the appropriate notebook and run the cells to see the results.
 
 ### Contributors
-- [Contributor 1]
+- [DugywithAI](https://github.com/DugywithAI)
 - [yueht23](https://github.com/yueht23)
 - [Wooddweller](https://github.com/Wooddweller)
 - [DoobieJella](https://github.com/DoobieJella)
