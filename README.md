@@ -18,28 +18,28 @@ We also performed feature engineering techniques like high-order feature transfo
 Additionally, we utilized external data sources like traffic cases in each region from data.gouv.fr to enrich our dataset.
 
 ### Methodologies
-Statistical Models
+1. Statistical Models:
 Zero-Inflated Poisson Model: Combines Poisson and binomial distributions to model excess zero counts separately.
 Hurdle Poisson Model: Two-stage model using binary classification for zero counts, then zero-truncated Poisson for positive counts.
-Machine Learning Models
-CANN (Combined Actuarial Neural Network): Integrates a GLM with a neural network to capture non-linear relationships.
-Boosting Models:
-XGBoost: Highly efficient gradient boosting implementation.
-CatBoost: Based on GBDT, optimized for categorical features with ordered boosting and symmetric trees.
-LightGBM: Gradient boosting framework designed for distributed and high-dimensional data.
-AutoML: Automated machine learning pipeline for data preprocessing, feature engineering, model selection and tuning.
+2. Machine Learning Models:
+- CANN (Combined Actuarial Neural Network): Integrates a GLM with a neural network to capture non-linear relationships.
+- Boosting Models:
+- XGBoost: Highly efficient gradient boosting implementation.
+- CatBoost: Based on GBDT, optimized for categorical features with ordered boosting and symmetric trees.
+- LightGBM: Gradient boosting framework designed for distributed and high-dimensional data.
+- AutoML: Automated machine learning pipeline for data preprocessing, feature engineering, model selection and tuning.
 
-Imbalanced Data Techniques
-REBAGG: Resampled bagging technique for imbalanced regression tasks.
-Deep Imbalanced Regression:
-Label Distribution Smoothing (LDS): Smooths label density with kernel density estimation.
-Feature Distribution Smoothing (FDS): Transfers feature statistics between target bins.
+3. Imbalanced Data Techniques
+- REBAGG: Resampled bagging technique for imbalanced regression tasks.
+- Deep Imbalanced Regression:
+- Label Distribution Smoothing (LDS): Smooths label density with kernel density estimation.
+- Feature Distribution Smoothing (FDS): Transfers feature statistics between target bins.
 
 ### Ensemble Modeling
 A stacking ensemble model was created by combining predictions from multiple base models like XGBoost, LightGBM and their variants using a meta-learner like XGBoost or LightGBM.
 
 ### Evaluation Metrics
-The utils notebook, located in the `srcs` folder, computes metrics like Mean Absolute Error (MAE), Mean Poisson Deviance, Poisson Deviance Error (PDE) - the winning criteria, training time and memory usage.
+The `utils` notebook, located in the `srcs` folder, computes metrics like Mean Absolute Error (MAE), Mean Poisson Deviance, Poisson Deviance Error (PDE) - the winning criteria, training time and memory usage.
 
 ### Results
 The stacking ensemble model achieved the best trade-off between accuracy (low MAE) and explainability (low PDE) by leveraging various techniques to handle the highly imbalanced claims data effectively.
