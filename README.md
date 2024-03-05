@@ -61,8 +61,8 @@ To get started with this project, follow these steps:
 - [Contributor 1]
 - [yueht23](https://github.com/yueht23)
 - [Wooddweller](https://github.com/Wooddweller)
-- [[Contributor 4]](https://github.com/DoobieJella)
-- [[Contributor 5]](https://github.com/RicardoYSu)
+- [DoobieJella](https://github.com/DoobieJella)
+- [RicardoYSu](https://github.com/RicardoYSu)
 
 ### Acknowledgments
 We would like to express our gratitude to Allianz and the organizers of the 2024 Practitioner's Challenge for providing us with this exciting opportunity to work on a real-world problem and push the boundaries of our knowledge.
