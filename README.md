@@ -1,7 +1,7 @@
 # 2024 Allianz Practitioner's Challenge - Group 3
 # Prediction Models for Highly Zero-Inflated Claims Count
 
-This GitHub repository contains all the Jupyter notebooks created for processing the dataset and implementing various methods for making predictions on highly zero-inflated insurance claims data. The repository features a total of six branches, including the main branch and five additional branches, each created by individual members for uploading their respective parts of the Jupyter notebook. The main branch serves as the central repository for all crucial final notebooks and the test environment.
+This GitHub repository contains all the Jupyter notebooks created for processing the dataset and implementing various methods for making predictions on highly zero-inflated insurance claims data. The repository features a total of six branches, including the main branch and five additional branches, each created by individual members for uploading their respective parts of the Jupyter notebook. The `main` branch serves as the central repository for all crucial final notebooks and the test environment.
 
 ### Introduction
 The 2024 Allianz Practitioner's Challenge centered on predicting insurance claims data with a high frequency of zero claims (96% zeros). Our team tackled this by evaluating various statistical and machine learning models tailored for zero-inflated data along with some latest data scientist free tools like AutoML. The challenge aimed to get the best possible accuracy and explainability (Poisson Deviance Error, PDE) by incorporating innovative approaches.
