@@ -24,9 +24,9 @@ Hurdle Poisson Model: Two-stage model using binary classification for zero count
 2. Machine Learning Models:
 - CANN (Combined Actuarial Neural Network): Integrates a GLM with a neural network to capture non-linear relationships.
 - Boosting Models:
-- XGBoost: Highly efficient gradient boosting implementation.
-- CatBoost: Based on GBDT, optimized for categorical features with ordered boosting and symmetric trees.
-- LightGBM: Gradient boosting framework designed for distributed and high-dimensional data.
+  - XGBoost: Highly efficient gradient boosting implementation.
+  - CatBoost: Based on GBDT, optimized for categorical features with ordered boosting and symmetric trees.
+  - LightGBM: Gradient boosting framework designed for distributed and high-dimensional data.
 - AutoML: Automated machine learning pipeline for data preprocessing, feature engineering, model selection and tuning.
 
 3. Imbalanced Data Techniques
