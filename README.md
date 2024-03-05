@@ -45,7 +45,7 @@ The `utils` notebook, located in the `srcs` folder, computes metrics like Mean A
 The stacking ensemble model achieved the best trade-off between accuracy (low MAE) and explainability (low PDE) by leveraging various techniques to handle the highly imbalanced claims data effectively.
 
 ### Winning Approach
-Our winning approach involved a stacked ensemble model that combined the strengths of multiple base models, including XGBoost, LightGBM, and their variants with REBAGG and hyperparameter tuning. This ensemble model achieved the best trade-off between accuracy (low MAE) and explainability (low PDE), leveraging the power of various techniques to effectively handle the highly imbalanced claims data.
+Our winning approach involved a stacked ensemble model that combined the strengths of multiple base models, including XGBoost, LightGBM, and their variants with REBAGG and hyperparameter tuning. This ensemble model achieved the best trade-off between accuracy (low MAE) and explainability (high PDE), leveraging the power of various techniques to effectively handle the highly imbalanced claims data.
 
 ### Future Work
 As insurance data evolves with the introduction of autonomous vehicles, our future work will focus on adapting our models to the changing landscape. We plan to explore how autonomous cars can possibly redefine insurance and how AI-driven vehicles will impact the prediction of insurance claims.
