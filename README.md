@@ -59,8 +59,8 @@ To get started with this project, follow these steps:
 
 ### Contributors
 - [Contributor 1]
-- [[Contributor 2]](https://github.com/yueht23)
-- [[Contributor 3]](https://github.com/Wooddweller)
+- [yueht23](https://github.com/yueht23)
+- [Wooddweller](https://github.com/Wooddweller)
 - [[Contributor 4]](https://github.com/DoobieJella)
 - [[Contributor 5]](https://github.com/RicardoYSu)
 
