@@ -68,3 +68,18 @@ To get started with this project, follow these steps:
 We would like to express our gratitude to Allianz and the organizers of the 2024 Practitioner's Challenge for providing us with this exciting opportunity to work on a real-world problem and push the boundaries of our knowledge.
 
 
+### repository structure
+```
+/
+│
+├── srcs/                       # Source files
+│   └── utils.py                # Utility functions used across the 
+│
+├── AllEv.ipynb             # Notebook for 'All Evaluation'
+├── Exploratory_data_analysis.ipynb  # Notebook for EDA
+│   └── PipeLine.ipynb          # Notebook for pipeline demonstration
+│
+├── README.md                   # Project overview and setup 
+│
+└── req.txt                     # Project dependencies list
+```
