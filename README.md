@@ -53,8 +53,8 @@ As insurance data evolves with the introduction of autonomous vehicles, our futu
 ### Getting Started
 To get started with this project, follow these steps:
 
-1. Clone the repository: `git clone https://github.com/your-repo-url.git`
-2. Install the required dependencies: `pip install -r requirements.txt`
+1. Clone the repository: `git clone https://github.com/yueht23/PGPC2024.git`
+2. Install the required dependencies: `pip install -r req.txt`
 3. Navigate to the appropriate notebook and run the cells to see the results.
 
 ### Contributors
