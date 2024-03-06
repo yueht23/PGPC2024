@@ -1,7 +1,7 @@
 from sklearn.datasets import fetch_openml
 import pandas as pd
 import numpy as np
-from sklearn.metrics import mean_squared_error, explained_variance_score, mean_poisson_deviance, max_error
+from sklearn.metrics import mean_squared_error, explained_variance_score, mean_poisson_deviance
 
 
 def load_mtpl2(n_samples=None):
@@ -27,10 +27,6 @@ def load_mtpl2(n_samples=None):
     df = df_freq.join(df_sev, how="left")
     df["ClaimAmount"].fillna(0, inplace=True)
 
-    # set datatype
-    df["VehAge"] = df["VehAge"].astype("Int64")
-    df["DrivAge"] = df["DrivAge"].astype("Int64")
-
     # unquote string fields
     for column_name in df.columns[df.dtypes.values == object]:
         df[column_name] = df[column_name].str.strip("'")
@@ -49,21 +45,15 @@ def load_data(n_samples=None):
 
 
 def print_scores(scores):
-    tmp = []
-    model_name = scores["model"]
-    for key, value in scores.items():
-        if key in ["model"]:
-            continue
-        else:
-            tmp.append({
-                "Model": model_name,
-                "Type": key.split("_")[0],
-                "Metric": key.split("_")[1],
-                "Mean": np.mean(value),
-                "Std": np.std(value)
-            })
-
-    return pd.DataFrame(tmp).sort_values(by=["Type", "Metric"])
+    print("Model:", scores["model"])
+    print("Train MAE:{:.4f},std:{:.4f}".format(np.mean(scores["train_MAE"]), np.std(scores["train_MAE"])))
+    print("Test  MAE:{:.4f},std:{:.4f}".format(np.mean(scores["test_MAE"]), np.std(scores["test_MAE"])))
+    print("Train Explained Variance:{:.4f},std:{:.4f}".format(np.mean(scores["train_explained_variance"]),
+                                                              np.std(scores["train_explained_variance"])))
+    print("Test  Explained Variance:{:.4f},std:{:.4f}".format(np.mean(scores["test_explained_variance"]),
+                                                              np.std(scores["test_explained_variance"])))
+    print("Train Time:{:.2f},std:{:.2f}".format(np.mean(scores["train_time"]), np.std(scores["train_time"])))
+    print("Test  Time:{:.2f},std:{:.2f}".format(np.mean(scores["test_time"]), np.std(scores["test_time"])))
 
 
 def get_scores(model_name):
@@ -75,17 +65,9 @@ def get_scores(model_name):
         "train_MAE": [],
         "test_MAE": [],
 
-        # Max Error for training set and testing set
-        "train_MaxError": [],
-        "test_MaxError": [],
-
-        # Mean Poisson Deviance for training set and testing set
-        "train_MeanPoissonDeviance": [],
-        "test_MeanPoissonDeviance": [],
-
-        # Proportion of Deviance Explained (PDE) for training set and testing set
-        "train_PDE": [],
-        "test_PDE": [],
+        # Explained Variance Score for training set and testing set
+        "train_explained_variance": [],
+        "test_explained_variance": [],
 
         # Time complexity for training set and testing set
         "train_time": [],
@@ -97,32 +79,38 @@ def get_scores(model_name):
     }
 
 
+def proportion_of_deviance_explained(y_true, y_pred):
+    """Proportion of deviance explained (PDE) for regression model.
+    PDE is the ratio of the variance of the predicted values to the variance of the true values.
+    PDE is a measure of the goodness of fit of a model.
+    """
+    y_mean = np.mean(y_true)*np.ones(len(y_true))
+    deviance = mean_poisson_deviance(y_true, y_pred)
+    null_deviance = mean_poisson_deviance(y_true, y_mean)
+    return 1 - deviance / null_deviance
+
+
 def calculate_metrics(scores, y_train, y_pred_train, y_test, y_pred_test):
+    """
+    calculate the metrics for the model
+    :param scores:
+    :param y_train:
+    :param y_pred_train:
+    :param y_test:
+    :param y_pred_test:
+    :return:
+    """
+
     # Mean Absolute Error for training set and testing set
-    scores["train_MAE"].append(mean_squared_error(y_train, y_pred_train))
-    scores["test_MAE"].append(mean_squared_error(y_test, y_pred_test))
-
-    # Max Error for training set and testing set
-    scores["train_MaxError"].append(max_error(y_train, y_pred_train))
-    scores["test_MaxError"].append(max_error(y_test, y_pred_test))
-
-    # Mean Poisson Deviance for training set and testing set
-    scores["train_MeanPoissonDeviance"].append(mean_poisson_deviance(y_train, y_pred_train))
-    scores["test_MeanPoissonDeviance"].append(mean_poisson_deviance(y_test, y_pred_test))
+    scores["train_MAE"].append(mean_squared_error(y_train, y_pred_train, squared=False))
+    scores["test_MAE"].append(mean_squared_error(y_test, y_pred_test, squared=False))
 
     # Explained Variance Score for training set and testing set
-    scores["train_PDE"].append(explained_variance_score(y_train, y_pred_train))
-    scores["test_PDE"].append(explained_variance_score(y_test, y_pred_test))
+    scores["train_explained_variance"].append(explained_variance_score(y_train, y_pred_train))
+    scores["test_explained_variance"].append(explained_variance_score(y_test, y_pred_test))
+
+    # Proportion of deviance explained for training set and testing set
+    scores["train_PDE"].append(proportion_of_deviance_explained(y_train, y_pred_train))
+    scores["test_PDE"].append(proportion_of_deviance_explained(y_test, y_pred_test))
+
     return scores
-
-
-if __name__ == "__main__":
-    scores = get_scores("model_name")
-    scores = calculate_metrics(scores, np.array([1, 2, 3]), np.array([1, 2, 3]), np.array([1, 2, 3]),
-                               np.array([1, 2, 3]))
-    scores["test_time"] = [1, 2, 3]
-    scores["train_time"] = [1, 2, 3]
-    scores["test_memory"] = [1, 2, 3]
-    scores["train_memory"] = [1, 2, 3]
-
-    print(print_scores(scores))
